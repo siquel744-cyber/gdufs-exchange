@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>管理后台 - GDUFS交换站</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="app-header">
+      <div class="brand">
+        <img src="/static/logo.jpg" alt="GDUFS交换站 logo" class="brand-mark" />
+        <div>
+          <h1>管理后台</h1>
+          <p>站点管理面板</p>
+        </div>
+      </div>
+      <div class="app-actions">
+        <a href="/" class="secondary-button small">返回首页</a>
+      </div>
+    </header>
+
+    <div class="admin-layout" style="display:flex; gap:20px;">
+      <nav style="width:220px;">
+        <div class="tip-card">
+          <button id="tabUsers" class="secondary-button" style="width:100%; margin-bottom:8px;">用户管理</button>
+          <button id="tabProducts" class="secondary-button" style="width:100%; margin-bottom:8px;">商品管理</button>
+          <button id="tabReports" class="secondary-button" style="width:100%;">举报管理</button>
+        </div>
+      </nav>
+      <main style="flex:1;">
+        <section id="panelUsers" class="tip-card">
+          <h3>用户管理</h3>
+          <div id="usersList">加载中...</div>
+        </section>
+        <section id="panelProducts" class="tip-card hidden">
+          <h3>商品管理</h3>
+          <div id="productsList">加载中...</div>
+        </section>
+        <section id="panelReports" class="tip-card hidden">
+          <h3>举报管理</h3>
+          <div id="reportsList">加载中...</div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="admin.js" defer></script>
+</body>
+</html>
