@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>我的商品 | 校园集市</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="app-header">
+      <div class="brand">
+        <span class="brand-mark">CM</span>
+        <div>
+          <h1>我的商品</h1>
+          <p>管理你已发布的校园二手商品</p>
+        </div>
+      </div>
+      <div class="app-actions">
+        <button class="secondary-button small" onclick="location.href='/'">首页</button>
+        <div class="user-panel hidden" id="userPanel">
+          <span class="user-welcome">欢迎，<strong id="usernameDisplay"></strong></span>
+          <button class="secondary-button small" id="logoutButton">登出</button>
+        </div>
+      </div>
+    </header>
+
+    <section class="product-summary">
+      <div>
+        <p class="summary-label">我的发布</p>
+        <h3>查看与管理你的商品</h3>
+      </div>
+      <p id="resultCount">共 0 件商品</p>
+    </section>
+
+    <section class="product-grid" id="productGrid"></section>
+
+    <section class="tip-card">
+      <h3>管理提示</h3>
+      <div class="tip-list">
+        <span>✓ 标记售出后商品会在首页显示“已售出”</span>
+        <span>✓ 若你希望再次上架，可删除后重新发布</span>
+        <span>✓ 登录状态会自动记住当前用户</span>
+      </div>
+    </section>
+  </div>
+
+  <script src="my_products.js" defer></script>
+</body>
+</html>

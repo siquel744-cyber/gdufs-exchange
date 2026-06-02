@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GDUFS交换站 | 二手交易平台</title>
+  <link rel="shortcut icon" href="/static/favicon.ico" />
+  <link rel="icon" type="image/jpeg" href="/static/logo.jpg" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="app-header">
+      <div class="brand">
+        <img src="/static/logo.jpg" alt="GDUFS交换站 logo" class="brand-mark" />
+        <div>
+          <h1>GDUFS交换站</h1>
+          <p>为交换好物而生</p>
+        </div>
+      </div>
+      <div class="app-actions">
+        <a href="/my-products" class="secondary-button small">我的商品</a>
+        <a href="/admin" id="adminLink" class="secondary-button small hidden">管理后台</a>
+        <div class="user-panel hidden" id="userPanel">
+          <span class="user-welcome">欢迎，<strong id="usernameDisplay"></strong></span>
+          <button class="secondary-button small" id="logoutButton">退出</button>
+        </div>
+        <button class="secondary-button small" id="openLogin">登录 / 注册</button>
+        <button class="primary-button" id="openPublish">发布商品</button>
+      </div>
+    </header>
+
+    <section class="hero-panel">
+      <div class="hero-copy">
+        <p class="eyebrow">大学生专属二手交易</p>
+        <h2>发现闲置好物，和同校同学更安心</h2>
+        <p class="hero-text">海量商品分类浏览，支持快速搜索与发布。找到你的下一件学习用品、电子设备、生活好物。</p>
+      </div>
+      <div class="search-panel">
+        <label for="searchInput" class="search-label">搜索商品</label>
+        <div class="search-box">
+          <input id="searchInput" type="search" placeholder="输入课程教材、数码、寝室用品等" />
+          <button id="searchButton" aria-label="搜索">搜索</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-summary">
+      <div>
+        <p class="summary-label">热卖推荐</p>
+        <h3>当季热门商品</h3>
+      </div>
+      <p id="resultCount">共 0 件商品可浏览</p>
+    </section>
+
+    <section class="product-grid" id="productGrid"></section>
+
+    <section class="tip-card">
+      <h3>使用小技巧</h3>
+      <div class="tip-list">
+        <span>✓ 先搜索再发布，避免重复上架</span>
+        <span>✓ 清晰图片和详细描述更容易成交</span>
+        <span>✓ 直接与卖家联系，安全交易更顺畅</span>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal-backdrop hidden" id="publishModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h2>发布新商品</h2>
+          <p>填写后即可快速上架，等待校内买家查看。</p>
+        </div>
+        <button class="icon-button" id="closePublish" aria-label="关闭" title="关闭">×</button>
+      </div>
+      <form id="publishForm" class="publish-form">
+        <div class="form-row">
+          <label for="titleInput">商品名称</label>
+          <input id="titleInput" type="text" placeholder="比如：标题笔记本、二手相机" required />
+        </div>
+        <div class="form-row">
+          <label for="priceInput">价格（元）</label>
+          <input id="priceInput" type="number" min="1" placeholder="如 120" required />
+        </div>
+        <div class="form-row">
+          <label for="contactInput">联系方式</label>
+          <input id="contactInput" type="text" placeholder="QQ / 微信 / 手机" required />
+        </div>
+        <div class="form-row">
+          <label for="categoryInput">分类</label>
+          <select id="categoryInput">
+            <option value="教材">教材</option>
+            <option value="电子产品">电子产品</option>
+            <option value="生活用品">生活用品</option>
+            <option value="服饰配件">服饰配件</option>
+            <option value="其他">其他</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="imageInput">图片链接</label>
+          <input id="imageInput" type="url" placeholder="https://example.com/image.jpg" />
+        </div>
+        <div class="form-row">
+          <label for="imageFileInput">上传图片</label>
+          <input id="imageFileInput" type="file" accept="image/*" />
+        </div>
+        <div class="form-row">
+          <label for="descriptionInput">商品描述</label>
+          <textarea id="descriptionInput" rows="4" placeholder="补充商品成色、购买时间、适用场景等"></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="secondary-button" id="cancelPublish">取消</button>
+          <button type="submit" class="primary-button">立即发布</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop hidden" id="loginModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h2>校园账号登录</h2>
+          <p>登录后即可发布商品、标记售出并查看个人状态。</p>
+        </div>
+        <button class="icon-button" id="closeLogin" aria-label="关闭" title="关闭">×</button>
+      </div>
+      <form id="authForm" class="publish-form">
+        <div class="form-row">
+          <label for="authUsername">用户名</label>
+          <input id="authUsername" type="text" placeholder="请输入用户名" required />
+        </div>
+        <div class="form-row">
+          <label for="authPassword">密码</label>
+          <input id="authPassword" type="password" placeholder="请输入密码" required />
+        </div>
+        <div class="form-row">
+          <label class="auth-toggle">
+            <input id="registerMode" type="checkbox" /> 新用户注册
+          </label>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="secondary-button" id="cancelLogin">取消</button>
+          <button type="submit" class="primary-button" id="authSubmit">登录</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
